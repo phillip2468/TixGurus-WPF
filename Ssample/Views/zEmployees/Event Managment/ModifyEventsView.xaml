@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="Ssample.Views.zEmployees.Event_Managment.ModifyEventsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:viewModel="clr-namespace:Ssample.ViewModel"
+             xmlns:eventManagement="clr-namespace:Ssample.ViewModel.zEmployees.Event_Management"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid Background="LightSlateGray">
+
+        <!--#region Grid column + row defintions-->
+
+        <!--Grid row + column defintions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--#region Label + Button for the page-->
+
+        <!--Label of tixgurus -->
+        <Label Content="TixGurus"
+               FontSize="23"
+               Grid.Column="0"
+               Grid.Row="0" />
+
+        <!--Button to navigate to the employee dashboard-->
+        <Button Content="Go back"
+                Grid.Column="0"
+                Grid.Row="4"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <Button.CommandParameter>
+                <viewModel:EmployeeDashboardViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--#endregion-->
+
+        <!--#region Text blocks for the page-->
+        <TextBlock Text="Modify events view"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="24" />
+
+        <TextBlock Grid.Column="1"
+                   Grid.Row="4"
+                   Text="Any edits in this table will be reflected in the database"
+                   FontSize="16"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   TextWrapping="Wrap"></TextBlock>
+
+        <!--#endregion-->
+
+        <!--#region Data grid-->
+
+        <!--Data grid properties-->
+        <Syncfusion:SfDataGrid  Name="DataGrid"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="3"
+                                Grid.RowSpan="3"
+                                AllowDeleting="True"
+                                AllowFiltering="True"
+                                AllowEditing="True"
+                                AutoGenerateColumns="True"
+                                AllowResizingColumns="True"
+                                NewItemPlaceholderPosition="AtEnd"
+                                SelectionUnit="Row" LiveDataUpdateMode="AllowDataShaping"
+                                ItemsSource="{Binding EventList}">
+            <Syncfusion:SfDataGrid.DataContext>
+                <eventManagement:ModifyEventsViewModel />
+            </Syncfusion:SfDataGrid.DataContext>
+        </Syncfusion:SfDataGrid>
+
+        <!--#endregion-->
+
+    </Grid>
+</UserControl>

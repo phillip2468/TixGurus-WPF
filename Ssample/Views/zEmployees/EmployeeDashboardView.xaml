@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="Ssample.Views.EmployeeDashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:properties="clr-namespace:Ssample.Properties"
+             xmlns:viewModel="clr-namespace:Ssample.ViewModel"
+             xmlns:baseViewModels="clr-namespace:Ssample.ViewModel.Base_view_models"
+             xmlns:eventManagement="clr-namespace:Ssample.ViewModel.zEmployees.Event_Management"
+             xmlns:customer="clr-namespace:Ssample.ViewModel.zEmployees.Customer"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid Background="White">
+
+        <!--#region Column + row definitions-->
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--Label for the apge-->
+        <Label Content="TixGurus"
+               FontSize="23"
+               Grid.Column="0"
+               Grid.Row="0" />
+
+        <!--#region Buttons for the page-->
+
+        <!--Button for navigating to modifying customers-->
+        <Button Grid.Column="0"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">Modify/View customers</TextBlock>
+            <Button.CommandParameter>
+                <customer:ModifyCustomerDetailsViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for navigating to modifying employees-->
+        <Button Grid.Column="1"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">Modify/View employees</TextBlock>
+            <Button.CommandParameter>
+                <viewModel:ModifyEmployeeDetailsViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for adding events-->
+        <Button Grid.Column="2"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">Add an event</TextBlock>
+            <Button.CommandParameter>
+                <eventManagement:AddEventsViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for modifying events-->
+        <Button Grid.Column="3"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">Modify an event</TextBlock>
+            <Button.CommandParameter>
+                <eventManagement:AddEventsViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for generating tickets-->
+        <Button Grid.Column="4"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">Generate Tickets</TextBlock>
+            <Button.CommandParameter>
+                <eventManagement:GenerateTicketsViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for modifying tickets-->
+        <Button Grid.Column="5"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">Modify ticket details</TextBlock>
+            <Button.CommandParameter>
+                <eventManagement:SuccessfulTicketsViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for modifying events-->
+        <Button Grid.Column="3"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">Modify an event</TextBlock>
+            <Button.CommandParameter>
+                <eventManagement:ModifyEventsViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for viewing data about events-->
+        <Button Grid.Column="6"
+                Grid.Row="3"
+                Margin="10 10 10 10" Command="{Binding NavCommand}">
+            <TextBlock TextWrapping="Wrap"
+                       TextAlignment="Center">View data about events</TextBlock>
+            <Button.CommandParameter>
+                <viewModel:DataEventsViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button for logging out-->
+        <Button Content="Logout"
+                Grid.Column="4"
+                Grid.Row="4"
+                Margin="10 10 10 10"
+                Command="{Binding NavLogoutCommand}">
+            <Button.CommandParameter>
+                <baseViewModels:DefaultViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--#endregion-->
+
+        <!--#region Labels + Textblock for the page-->
+        <Label Content="Employee's Dashboard"
+               Grid.Column="2"
+               Grid.Row="1"
+               FontSize="23"
+               Grid.ColumnSpan="3"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center" />
+
+        <TextBlock Grid.Column="5"
+                   Grid.Row="0"
+                   TextWrapping="Wrap"
+                   FontSize="14"
+                   Grid.ColumnSpan="2"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center">
+            <Run Text="Successfully signed in as" />
+            <Run Text="{Binding Source={x:Static properties:Settings.Default},Path=Email}" />
+        </TextBlock>
+
+        <!--#endregion-->
+
+    </Grid>
+</UserControl>

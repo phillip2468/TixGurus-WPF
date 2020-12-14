@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="Ssample.Views.Dashboard.MyAccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:Ssample.ViewModel.Dashboard"
+             xmlns:viewModel1="clr-namespace:Ssample.ViewModel"
+             xmlns:properties="clr-namespace:Ssample.Properties"
+             xmlns:baseViewModels="clr-namespace:Ssample.ViewModel.Base_view_models"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid Background="Gold">
+
+        <!--#region Grid column + row definitions-->
+
+        <!--Column definitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Row definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--#region Labels for the page-->
+
+        <!--Label for TixGurus-->
+        <Label Content="TixGurus"
+               FontSize="24" />
+
+        <!--Label for my account-->
+        <Label Content="My Account"
+               Grid.Column="2"
+               Grid.Row="0"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               FontSize="22" />
+
+        <!--#endregion-->
+
+        <!--#region Buttons for navigation-->
+
+        <!--Button for going back-->
+        <Button Name="Back"
+                Content="Go Back"
+                Grid.Column="0"
+                Grid.Row="4"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <Button.CommandParameter>
+                <viewModel1:HomePageSignedInViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button to change details-->
+        <Button Name="ChangeDetails"
+                Grid.Column="2"
+                Grid.Row="4"
+                Content="Change details"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <Button.CommandParameter>
+                <viewModel:ChangeMyDetailsViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button to view past transactions-->
+        <Button Name="ViewPastRecords"
+                Grid.Column="3"
+                Grid.Row="4"
+                Content="View past transactions"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <Button.CommandParameter>
+                <viewModel:ViewPastTicketsViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button to log out of account-->
+        <Button Grid.Column="4"
+                Grid.Row="4"
+                Content="Logout"
+                Margin="10 10 10 10"
+                Command="{Binding NavLogoutCommand}">
+            <Button.CommandParameter>
+                <baseViewModels:DefaultViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--#endregion-->
+
+        <!--#region Text block indicating what user has logged in-->
+
+        <!--Text block of user logged in-->
+        <TextBlock Grid.Column="4"
+                   Grid.Row="0"
+                   TextWrapping="Wrap"
+                   FontSize="14">
+            <Run Text="Successfully signed in as" />
+            <Run Text="{Binding Source={x:Static properties:Settings.Default},Path=Email}" />
+        </TextBlock>
+
+        <!--#endregion-->
+
+    </Grid>
+</UserControl>

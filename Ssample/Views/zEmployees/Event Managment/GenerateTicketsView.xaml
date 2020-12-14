@@ -1,0 +1,311 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:Ssample="clr-namespace:Ssample"
+             xmlns:viewModel="clr-namespace:Ssample.ViewModel"
+             xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:model="clr-namespace:Ssample.Model"
+             x:Class="Ssample.Views.zEmployees.Event_Managment.GenerateTicketsView"
+             mc:Ignorable="d"
+             d:DesignHeight="650"
+             d:DesignWidth="800">
+    <Grid Background="LightCoral">
+
+        <!--#region Column + row defintions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--Labels for page-->
+        <Label Content="TixGurus"
+               FontSize="23"
+               Grid.Column="0"
+               Grid.Row="0" />
+
+        <Label Content="Generate Tickets"
+               FontSize="23"
+               Grid.Column="2"
+               Grid.Row="0"
+               Grid.ColumnSpan="2"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center" />
+
+        <!-- Buttons for navigating-->
+        <Button Grid.Column="5"
+                Grid.Row="4"
+                Content="Save changes"
+                Margin="10 10 10 10"
+                Command="{Binding GoToSuccessfulTicketsCommand}" />
+
+        <Button Grid.Column="0"
+                Grid.Row="4"
+                Content="Go back"
+                Margin="10 10 10 10"
+                Command="{Binding NavigateBackCommand}">
+            <Button.CommandParameter>
+                <viewModel:EmployeeDashboardViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!-- Data grid for viewing current events that have been generated-->
+        <Syncfusion:SfDataGrid Name="DataGrid" Grid.Column="1"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="4"
+                  SelectionMode="Single"
+                  AllowFiltering="True"
+                  AllowSorting="True"
+                  Background="White"
+                  AutoGenerateColumns="True"
+                  AllowResizingColumns="True"
+                  ItemsSource="{Binding EventList}"
+                  />
+
+        <!--Grid for generating tickets-->
+        <Grid x:Name="grid1"
+              Grid.Column="0"
+              Grid.Row="2"
+              Grid.ColumnSpan="6"
+              Grid.RowSpan="3">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Times for event"
+                   FontSize="22"
+                   Grid.Column="5"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center" />
+
+            <TextBlock Text="Type the event name: "
+                       Grid.Column="4"
+                       HorizontalAlignment="Left"
+                       Margin="3"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+            <TextBox x:Name="EventTitleTextBox"
+                     Grid.Column="5"
+                     Margin="0 10 10 10"
+                     Grid.Row="0"
+                     Grid.ColumnSpan="3"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Center"
+                     Text="{Binding EventTitle, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     />
+
+            <!--#region Level one ticket details-->
+
+            <!--Level One Number of seats-->
+            <TextBlock Text="Number of seats:"
+                       Grid.Column="3"
+                       HorizontalAlignment="Center"
+                       Margin="3"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <!--Price assigned label-->
+            <TextBlock Text="Price"
+                       Grid.Column="2"
+                       HorizontalAlignment="Center"
+                       Margin="3"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <!--Letter assigned label-->
+            <TextBlock Text="Letter"
+                       Grid.Column="1"
+                       HorizontalAlignment="Center"
+                       Margin="3"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <!--Text block for the start time-->
+            <TextBlock Text="Start time"
+                       Grid.Column="4"
+                       HorizontalAlignment="Center"
+                       Margin="3"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <!--Text block for the end time-->
+            <TextBlock Text="End time"
+                       Grid.Column="4"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="3"
+                       Grid.Row="3"
+                       TextWrapping="Wrap" />
+
+            <!--Text block for the assigning a letter-->
+            <TextBlock Text="Enter a letter and then a price - Level 1"
+                       Grid.Column="0"
+                       HorizontalAlignment="Left"
+                       Margin="3"
+                       Grid.Row="1"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <!--Text box for assigning a letter-->
+            <TextBox x:Name="LetterTextBox"
+                     Grid.Column="1"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="1"
+                     Text="{Binding LevelOneChar, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--Text box for level one price-->
+            <TextBox x:Name="LevelOnePriceTextBox"
+                     Grid.Column="2"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="1"
+                     Text="{Binding LevelOnePrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--Text box for level one capacity-->
+            <TextBox x:Name="LevelOneCapacity"
+                     Grid.Column="3"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="1"
+                     Text="{Binding LevelOneCapacity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--Date time pickers for start and end of events-->
+            <xctk:DateTimePicker Grid.Row="2"
+                                 Grid.Column="5"
+                                 Margin="10 10 10 10"
+                                 Grid.ColumnSpan="3"
+                                 TimePickerAllowSpin="True"
+                                 VerticalAlignment="Center"
+                                 AllowSpin="True"
+                                 UpdateValueOnEnterKey="True"
+                                 Text="{Binding EventStartLevelOne, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <xctk:DateTimePicker Grid.Row="3"
+                                 Grid.Column="5"
+                                 Margin="10 10 10 10"
+                                 Grid.ColumnSpan="3"
+                                 VerticalAlignment="Center"
+                                 TimePickerAllowSpin="True"
+                                 AllowSpin="True"
+                                 UpdateValueOnEnterKey="True"
+                                 Text="{Binding EventEndLevelOne, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--#endregion-->
+
+            <!--#region Level two ticket details-->
+
+            <!--Level Two Ticket Details-->
+            <TextBlock Text="Enter a letter then a price - Level 2"
+                       Grid.Column="0"
+                       HorizontalAlignment="Left"
+                       Margin="3"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+            <TextBox x:Name="LevelTwoTextBox"
+                     Grid.Column="1"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="2"
+                     Text="{Binding LevelTwoChar, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <TextBox x:Name="LevelTwoPriceTextBox"
+                     Grid.Column="2"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="2"
+                     Text="{Binding LevelTwoPrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <TextBox x:Name="LevelTwoCapacityTextBox"
+                     Grid.Column="3"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="2"
+                     Text="{Binding LevelTwoCapacity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--#endregion-->
+
+            <!--#region Level three ticket details-->
+            <!--Level Three Ticket Details-->
+
+            <!--Text block for level three tickets-->
+            <TextBlock Text="Enter a letter then a price - Level 3"
+                       Grid.Column="0"
+                       HorizontalAlignment="Left"
+                       Margin="3"
+                       Grid.Row="3"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+
+            <!--Text box for level three tickets-->
+            <TextBox x:Name="LevelThreeTextBox"
+                     Grid.Column="1"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="3"
+                     Text="{Binding LevelThreeChar, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--Text box for assigning a price to level three tickets-->
+            <TextBox x:Name="LevelThreePriceTextBox"
+                     Grid.Column="2"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="3"
+                     Text="{Binding LevelThreePrice, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--Text box for level three capacity-->
+            <TextBox x:Name="LevelThreeCapacityTextBox"
+                     Grid.Column="3"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="3"
+                     Text="{Binding LevelThreeCapacity, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+            <!--#endregion-->
+
+        </Grid>
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,388 @@
+﻿<UserControl x:Class="Ssample.Views.Buying_tickets.PurchaseTicketsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buyingTickets="clr-namespace:Ssample.ViewModel.Buying_tickets"
+             xmlns:helpers="clr-namespace:Ssample.Helpers"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid Background="Aquamarine"
+          ShowGridLines="False">
+
+        <!--#region Column + row definitions for the outer grid-->
+
+        <!--Column definitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Row definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--#region Buttons for the page navigation-->
+
+        <!--Button used for going back-->
+        <Button Grid.Row="6"
+                Grid.Column="0"
+                Command="{Binding NavCommand}"
+                Margin="10 10 10 10"
+                Content="Go back">
+            <Button.CommandParameter>
+                <buyingTickets:ViewEventsViewModel />
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button used for saving changes-->
+        <Button Grid.Row="6"
+                Grid.Column="5"
+                Command="{Binding Nav2Command}"
+                Margin="10 10 10 10"
+                Content="Save changes">
+            <Button.CommandParameter>
+                <buyingTickets:SuccessfulPurchaseViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--#endregion-->
+
+        <!--#region Labels for the page-->
+
+        <!--Title label for page-->
+        <Label Grid.Column="2"
+               Grid.Row="0"
+               Content="Purchase tickets page"
+               VerticalAlignment="Center"
+               FontSize="28"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               BorderBrush="DarkSalmon"
+               BorderThickness="3" />
+
+        <!--Label for sign in-->
+        <Label Grid.Column="0"
+               Grid.Row="1"
+               Content="Do you have an account? Sign in here"
+               VerticalAlignment="Center"
+               FontSize="24"
+               Grid.ColumnSpan="3"
+               HorizontalAlignment="Center"
+               BorderBrush="Blue"
+               BorderThickness="3" />
+
+        <!--Label for guest account-->
+        <Label Grid.Column="3"
+               Grid.Row="1"
+               Content="Or use a guest account here"
+               VerticalAlignment="Center"
+               FontSize="24"
+               Grid.ColumnSpan="3"
+               HorizontalAlignment="Center"
+               BorderBrush="DarkBlue"
+               BorderThickness="3" />
+
+        <!--#endregion-->
+
+        <!--#region Grid for guests-->
+
+        <!--Border-->
+        <Border BorderBrush="Black"
+                BorderThickness="4"
+                Grid.Column="3"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="4">
+
+            <Grid x:Name="GridForGuests"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+
+                <!--#region Grid row + column definitions-->
+
+                <!--Column definitions for grid sign up-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--Row definitions for grid sign up-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--#endregion-->
+
+                <!--Label for the page-->
+                <TextBlock Text="Add your personal details and payment information here"
+                           Grid.Column="1"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Right"
+                           Grid.Row="0"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+
+                <!--Label for email -->
+                <Label Content="Email:"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Grid.Row="1"
+                       VerticalAlignment="Center"
+                       FontSize="16" />
+
+                <!--Text box for email-->
+                <TextBox x:Name="EmailTextBox"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                         VerticalAlignment="Center"
+                         Grid.ColumnSpan="2"
+                         Margin="10 10 10 10" />
+
+
+                <!--Label for first name-->
+                <Label Content="First name:"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"
+                       FontSize="16" />
+
+                <!--Text box for first name-->
+                <TextBox x:Name="FirstNameTextBox"
+                         Grid.Column="1"
+                         Margin="10 10 10 10"
+                         Grid.Row="2"
+                         Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                         VerticalAlignment="Center" />
+
+
+                <!--Label for last name-->
+                <Label Content="Last name:"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Grid.Row="3"
+                       VerticalAlignment="Center"
+                       FontSize="16" />
+
+                <!--Text box for last name-->
+                <TextBox x:Name="LastNameTextBox"
+                         Grid.Column="1"
+                         Grid.Row="3"
+                         Margin="10 10 10 10"
+                         Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                         VerticalAlignment="Center" />
+
+                <!--Label for address-->
+                <Label Content="Address:"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Grid.Row="4"
+                       VerticalAlignment="Center"
+                       FontSize="16" />
+
+                <!--Text box for address-->
+                <TextBox x:Name="AddressTextBox"
+                         Grid.Column="1"
+                         Margin="10 10 10 10"
+                         Grid.Row="4"
+                         Grid.RowSpan="2"
+                         Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                         Grid.ColumnSpan="2" />
+
+                <!--Label for paypal-->
+                <Label Content="Add Paypal:"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Grid.Row="6"
+                       VerticalAlignment="Center"
+                       FontSize="16" />
+
+                <!--Button for paypal-->
+                <Button Grid.Column="1"
+                        Grid.Row="6"
+                        Margin="10 10 10 10"
+                        Content="Pay with PayPal"
+                        Click="ButtonBase_OnClick" />
+
+                <!--Text block for following seats label-->
+                <TextBlock Text="You have selected the following seats:"
+                           Grid.Column="1"
+                           Grid.Row="7"
+                           FontSize="18"
+                           Grid.ColumnSpan="3" />
+
+                <!--Listbox containing all seats selected-->
+                <ListBox Grid.Row="8"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Grid.RowSpan="3"
+                         ItemsSource="{Binding ListOfMatchingTickets}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock FontSize="18">
+                                    <Run Text="{Binding eventTitle}" />
+                                    <Run Text="{Binding seatLocation}" />
+                                    <Run Text="{Binding price}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <!--Label for total price-->
+                <Label Grid.Row="8"
+                       Grid.Column="2"
+                       Content="Total price"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.ColumnSpan="2"
+                       FontSize="18" />
+
+                <!--Label for extra pricing-->
+                <TextBlock Grid.Row="9"
+                       Grid.Column="2"
+                       Text="Total cost is calculated after GST + fees (total + 0.15% of toal)"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="18" 
+                       Grid.ColumnSpan="2"
+                       TextWrapping="Wrap"/>
+
+                <!--Label for extra pricing-->
+                <Label Grid.Row="10"
+                       Grid.Column="2"
+                       Content="Total costs"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="18" 
+                       />
+
+                <TextBox Grid.Row="10"
+                         Grid.Column="3"
+                         Margin="10 10 10 10"
+                         Text="{Binding TotalPrice,Mode=TwoWay}" IsReadOnly="True"/>
+
+            </Grid>
+        </Border>
+
+        <!--#endregion-->
+
+        <!--#region Grid for signing into an account-->
+
+        <Border Grid.Column="0"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="4"
+                BorderBrush="Black"
+                BorderThickness="4">
+
+            <Grid Name="SignInGrid">
+
+                <!--#region Grid row + column definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--Row definitions for grid sign up-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--#endregion-->
+
+                <!--Label for the page-->
+                <TextBlock Text="Sign in with you account here"
+                           Grid.Column="1"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Right"
+                           Grid.Row="0"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+
+                <!--Label for email -->
+                <Label Content="Email:"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Grid.Row="1"
+                       VerticalAlignment="Center"
+                       FontSize="16" />
+
+                <!--Text box for email -->
+                <TextBox Grid.Column="1"
+                         Grid.Row="1"
+                         Text="{Binding LoginEmail, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                         VerticalAlignment="Center"
+                         Grid.ColumnSpan="2"
+                         Margin="10 10 10 10" />
+
+                <!--Label for password-->
+                <Label Content="Password:"
+                       Grid.Column="0"
+                       HorizontalAlignment="Right"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"
+                       FontSize="16" />
+
+                <!--Text box for password-->
+                <PasswordBox Grid.Column="1"
+                         Margin="10 10 10 10"
+                         Grid.Row="2"
+                         VerticalAlignment="Center"
+                         Grid.ColumnSpan="2"
+                         helpers:PasswordHelper.Attach="True"
+                         helpers:PasswordHelper.Password="{Binding LoginPassword, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+                <!--Button for signing in-->
+                <Button Grid.Column="2"
+                        Grid.Row="3"
+                        Content="Sign in"
+                        Command="{Binding NavToCustomerPurchase}">
+                    <Button.CommandParameter>
+                        <buyingTickets:CustomerPurchaseTicketViewModel/>
+                    </Button.CommandParameter>
+                </Button>
+
+            </Grid>
+        </Border>
+
+        <!--#endregion-->
+    </Grid>
+</UserControl>

@@ -1,0 +1,335 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Ssample="clr-namespace:Ssample"
+             xmlns:local="clr-namespace:Ssample.Helpers"
+             x:Class="Ssample.Views.RegisterView"
+             mc:Ignorable="d"
+             d:DesignHeight="500"
+             d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <Ssample:CustomerDatabaseDataSet x:Key="CustomerDatabaseDataSet" />
+
+    </UserControl.Resources>
+
+    <Grid Background="Pink">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Command Binding-->
+
+        <!-- Labels for page-->
+        <Label Grid.Column="0"
+               Grid.Row="0"
+               Content="TixGurus"
+               FontSize="24"
+               Margin="10 10 10 10" />
+        <Label Grid.Column="2"
+               Grid.Row="0"
+               FontSize="24"
+               Content="Register Page"
+               Margin="10 10 10 10" Grid.ColumnSpan="2" />
+
+        <!--Buttons for going back and registering-->
+
+        <Button Grid.Row="6"
+                Grid.Column="0"
+                Command="{Binding GoBackCommand}"
+                Content="Go back"
+                Margin="10 10 10 10" />
+        <Button Grid.Row="6"
+                Grid.Column="4"
+                Command="{Binding GoToSuccessfulViewCommand}"
+                Content="Register"
+                Margin="10 10 10 10" />
+
+        <!--Textboxes and labels to sign up-->
+        <!--Another grid inside the main grid for signing up-->
+
+        <Grid x:Name="GridForSigningUp"
+              Grid.Column="0"
+              Grid.Row="1"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Grid.RowSpan="5"
+              Grid.ColumnSpan="5">
+
+            <!--Column definitions for grid sign up-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Row definitions for grid sign up-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--Label and text box for email -->
+            <Label Content="Email:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="EmailTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="24"
+                     Grid.Row="0"
+                     Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2"
+                     Margin="3" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Text="Email must be contain @ symbol and be longer than 8 characters" TextWrapping="WrapWithOverflow" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+
+            <!--Label and password box for Password-->
+            <Label Content="Password:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <PasswordBox Grid.Column="1"
+                     Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     Width="200"
+                     Height="24"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                         local:PasswordHelper.Attach="True"
+                         local:PasswordHelper.Password="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     Margin="3" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="1"
+                       Text="Password must be longer than 5 characters"
+                       TextWrapping="WrapWithOverflow"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" />
+
+            <!--Label and text box for first name-->
+            <Label Content="First Name:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="2"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="FirstNameTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="2"
+                     Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="2"
+                       Text="First name must contain valid characters and be longer than 2 letters"
+                       TextWrapping="WrapWithOverflow"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"/>
+
+            <!--Label and text box for last name-->
+
+            <Label Content="Last Name:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="3"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="LastNameTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="3"
+                     Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="3"
+                       Text="Last name must contain valid characters and be longer than 2 letters"
+                       TextWrapping="WrapWithOverflow"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"/>
+
+            <!--Label and text box for phone number-->
+
+            <Label Content="Phone number:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="4"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="PhoneNumberTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="4"
+                     Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="4"
+                       Text="Phone number must contain numbers"
+                       TextWrapping="WrapWithOverflow"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" />
+
+            <!--Label and text box for address-->
+
+            <Label Content="Address:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="5"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="AddressTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="5"
+                     Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="5"
+                       Text="Must type an address with digits as the first word and second or more words with numbers and digits"
+                       TextWrapping="WrapWithOverflow"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" />
+
+            <!--Label and text box for City-->
+
+            <Label Content="City:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="6"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="CityTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="6"
+                     Text="{Binding City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="6"
+                       Text="City must be longer than 3 letters"
+                       TextWrapping="WrapWithOverflow"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" />
+
+            <!--Combo Box for State-->
+
+            <Label Content="State:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="7"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="StateTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="7"
+                     Text="{Binding State, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="7"
+                       Text="State must not contain more than 3 letters"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" />
+
+            <!--Label and text box for postcode-->
+
+            <Label Content="Postcode:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="8"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <TextBox x:Name="PostcodeTextBox"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Height="23"
+                     Margin="3"
+                     Grid.Row="8"
+                     Text="{Binding Postcode, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="200"
+                     Grid.ColumnSpan="2" />
+            <TextBlock Grid.Column="2"
+                       Grid.Row="8"
+                       Text="Postcode must contain only 4 numbers"
+                       TextWrapping="WrapWithOverflow"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" />
+
+            <!--Label and Datepicker for date of birth-->
+
+            <Label Content="Date of birth:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   Grid.Row="9"
+                   VerticalAlignment="Center"
+                   FontSize="16" />
+            <DatePicker x:Name="DatePickerDateOfBirth"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        Height="23"
+                        Margin="3"
+                        Grid.Row="9"
+                        Text="{Binding DateOfBirth, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                        VerticalAlignment="Center"
+                        Width="200"
+                        Grid.ColumnSpan="2"
+                         />
+
+        </Grid>
+    </Grid>
+</UserControl>

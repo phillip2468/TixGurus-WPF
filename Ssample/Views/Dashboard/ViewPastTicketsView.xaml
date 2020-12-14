@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="Ssample.Views.Dashboard.ViewPastTicketsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ssample.Views.Dashboard"
+             xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:baseViewModels="clr-namespace:Ssample.ViewModel.Base_view_models"
+             xmlns:dashboard="clr-namespace:Ssample.ViewModel.Dashboard"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <Grid Background="LightSteelBlue">
+
+        <!--Column definitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Row definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--Label-->
+        <Label Grid.Column="0"
+               Grid.Row="0"
+               Content="TixGurus"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               FontSize="18" />
+
+        <!--Label for tickets view-->
+        <Label Content="Tickets view"
+               Grid.Column="1"
+               Grid.Row="1"
+               FontSize="22"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center" />
+
+        <!--Data grid for tickets view-->
+        <Border Grid.Column="0"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="3"
+                BorderBrush="Black"
+                BorderThickness="4">
+            <Syncfusion:SfDataGrid x:Name="DataGridTickets"
+                                   Background="White"
+                                   ItemsSource="{Binding CustomerTicketDetails}" />
+        </Border>
+
+
+        <!--Button for printing tickets-->
+        <Button Grid.Column="1"
+                Grid.Row="5"
+                Content="Print to pdf"
+                Name="Buttonforprintingtickets"
+                Click="Buttonforprintingtickets_OnClick"
+                Margin="10 10 10 10" />
+
+        <!--Label for transaction view-->
+        <Label Content="Transaction view"
+               Grid.Column="4"
+               Grid.Row="1"
+               FontSize="22"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center" />
+
+        <!--Button for transaction view-->
+        <Button Grid.Column="4"
+                Grid.Row="5"
+                Content="Print to pdf"
+                Name="ButtonPrintTransaction"
+                Click="ButtonPrintTransaction_OnClick"
+                Margin="10 10 10 10" />
+
+        <!--Data grid for transaction view-->
+        <Border Grid.Column="3"
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Grid.RowSpan="3"
+                BorderBrush="Black"
+                BorderThickness="4">
+            <Syncfusion:SfDataGrid x:Name="DataGridTransactions"
+                                   Background="White"
+                                   ItemsSource="{Binding CustomerTransactions}" />
+        </Border>
+
+
+        <!--Button for navigating back-->
+        <Button Grid.Column="0"
+                Grid.Row="6"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <TextBlock Text="Go back"
+                       TextWrapping="Wrap" />
+            <Button.CommandParameter>
+                <dashboard:MyAccountViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+    </Grid>
+</UserControl>

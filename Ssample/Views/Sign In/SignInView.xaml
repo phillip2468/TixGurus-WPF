@@ -1,0 +1,135 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Ssample.Helpers"
+             xmlns:baseViewModels="clr-namespace:Ssample.ViewModel.Base_view_models"
+             x:Class="Ssample.Views.SignInView"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+
+
+    <Grid Background="Yellow">
+
+        <!--#region Grid column + row definitions-->
+
+        <!--Column definitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Row definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!-- Label for tixgurus-->
+        <Label Grid.Column="0"
+               Grid.Row="0"
+               Content="TixGurus"
+               FontSize="24" Margin="10 10 10 10"/>
+
+        <!--#region Buttons for going back, signing in or going to employee view-->
+
+        <!--Button to go back to default view-->
+        <Button Grid.Row="4"
+                Grid.Column="0"
+                Command="{Binding NavCommand}"
+                Content="Go Back"
+                Margin="10 10 10 10">
+            <Button.CommandParameter>
+                <baseViewModels:DefaultViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Button to sign into customer view-->
+        <Button Grid.Row="4"
+                Grid.Column="4"
+                Command="{Binding GoToSuccessfulSignInViewCommand}"
+                x:Name="SignIn"
+                Content="Sign in" Margin="10 10 10 10"/>
+
+        <!--Button to go to employee view sign in-->
+        <Button Grid.Column="4" Grid.Row="0" Content="Go To Employee View" Margin="10 10 10 10" Command="{Binding GoToEmployeeViewCommand}"/>
+
+        <!--#endregion-->
+
+        <Grid x:Name="GridSignin"
+              Grid.Column="1"
+              Grid.Row="1"
+              Grid.ColumnSpan="3"
+              Grid.RowSpan="3">
+
+            <!--Grid row definitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--Grid column definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Label for sign in-->
+            <Label Grid.Column="1"
+                   Grid.Row="0"
+                   FontSize="24"
+                   Content="Sign in"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center" />
+
+            <!--Label and textbox for email-->
+            <Label Content="Email:"
+                   Grid.Column="0"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Margin="3"
+                   Grid.Row="1"
+                   FontSize="24" />
+            <TextBox x:Name="Email"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     VerticalAlignment="Center"
+                     Width="180" />
+
+            <!--Label and textbox for password-->
+            <Label Content="Password:"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontSize="24" />
+            <PasswordBox x:Name="Password"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     Grid.Row="2"
+                     Grid.ColumnSpan="2"
+                     VerticalAlignment="Center"
+                         Width="180"
+                         local:PasswordHelper.Attach="True"
+                         local:PasswordHelper.Password="{Binding Password, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

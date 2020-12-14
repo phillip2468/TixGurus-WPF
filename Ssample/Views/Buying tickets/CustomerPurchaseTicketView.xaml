@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Ssample.Views.Buying_tickets.CustomerPurchaseTicketView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ssample.Views.Buying_tickets"
+             xmlns:baseViewModels="clr-namespace:Ssample.ViewModel.Base_view_models"
+             xmlns:properties="clr-namespace:Ssample.Properties"
+             xmlns:buyingTickets="clr-namespace:Ssample.ViewModel.Buying_tickets"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <Grid Background="LightCoral">
+        <!--#region Column + row definitions for the outer grid-->
+
+        <!--Column definitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Row definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--#region Labels for the page-->
+
+        <!--Title label for page-->
+        <Label Grid.Column="2"
+               Grid.Row="0"
+               Content="Purchase tickets page"
+               VerticalAlignment="Center"
+               FontSize="28"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               BorderBrush="DarkSalmon"
+               BorderThickness="3" />
+
+        <!--Label for guest account-->
+        <Label Grid.Column="0"
+               Grid.Row="1"
+               Content="Please enter for your financial details here"
+               VerticalAlignment="Center"
+               FontSize="24"
+               Grid.ColumnSpan="3"
+               HorizontalAlignment="Center"
+               BorderBrush="DarkBlue"
+               BorderThickness="3" />
+
+        <!--#endregion-->
+
+        <!--Label for paypal-->
+        <Label Content="Add Paypal:"
+               Grid.Column="0"
+               HorizontalAlignment="Right"
+               Grid.Row="3"
+               VerticalAlignment="Center"
+               FontSize="16" />
+
+        <!--Button for paypal-->
+        <Button Grid.Column="1"
+                Grid.Row="3"
+                Margin="10 10 10 10"
+                Content="Pay with PayPal"
+                Name="PaypalButton"
+                Click="PaypalButton_OnClick"/>
+
+        <!--Text block to show which user has signed in -->
+        <TextBlock Grid.Column="4"
+                   Grid.Row="1"
+                   TextWrapping="Wrap"
+                   FontSize="20"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center">
+            <Run Text="Successfully signed in as" />
+            <Run Text="{Binding Source={x:Static properties:Settings.Default},Path=Email}" />
+        </TextBlock>
+
+        <!--Listbox containing all seats selected-->
+        <ListBox Grid.Row="3"
+                 Grid.Column="2"
+                 Grid.ColumnSpan="2"
+                 Grid.RowSpan="3"
+                 ItemsSource="{Binding ListOfMatchingTickets}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock FontSize="18">
+                            <Run Text="{Binding eventTitle}" />
+                            <Run Text="{Binding seatLocation}" />
+                            <Run Text="{Binding price}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!--Label for total price-->
+        <Label Content="Finish transaction"
+               Grid.Column="2"
+               Grid.Row="2"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               FontSize="22" 
+               Grid.ColumnSpan="2"/>
+
+        <!--Button for paypal-->
+        <Button Grid.Column="0"
+                Grid.Row="6"
+                Margin="10 10 10 10"
+                Content="Log out and return to main menu"
+                Command="{Binding NavDefaultCommand}">
+            <Button.CommandParameter>
+                <baseViewModels:DefaultViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+
+        <!--Label for extra pricing-->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="4"
+                   Text="Total cost is calculated after GST + fees (total + 0.05% of total)"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="18"
+                   Grid.ColumnSpan="2"
+                   TextWrapping="Wrap" />
+
+        <!--Label for extra pricing-->
+        <Label Grid.Row="4"
+               Grid.Column="4"
+               Content="Total costs"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               FontSize="18" />
+
+        <TextBox Grid.Row="4"
+                 Grid.Column="5"
+                 Margin="10 10 10 10"
+                 Text="{Binding TotalPrice,Mode=TwoWay}"
+                 IsReadOnly="True" 
+                 VerticalAlignment="Center"/>
+
+        <!--Button for paypal-->
+        <Button Grid.Column="5"
+                Grid.Row="6"
+                Margin="10 10 10 10"
+                Content="Finish transaction"
+                Command="{Binding NavSuccessCommand}">
+            <Button.CommandParameter>
+                <buyingTickets:SuccessfulCustomerTicketPurchaseViewModel/>
+            </Button.CommandParameter>
+        </Button>
+    </Grid>
+</UserControl>

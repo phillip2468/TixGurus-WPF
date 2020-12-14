@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B40E00B8-0EB6-409E-997E-72C15DEA5004}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Ssample</RootNamespace>
+    <AssemblyName>Ssample</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleWPF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleWPF.2.0.2\lib\net45\SimpleWPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.18.3.0.53\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Data.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Data.WPF.18.3.0.53\lib\net46\Syncfusion.Data.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.18.3.0.53\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Pdf.Wpf.18.3.0.53\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PdfViewer.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.PdfViewer.WPF.18.3.0.53\lib\net46\Syncfusion.PdfViewer.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfChart.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfChart.WPF.18.3.0.53\lib\net46\Syncfusion.SfChart.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfGrid.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfGrid.WPF.18.3.0.53\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfGridConverter.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.DataGridExcelExport.Wpf.18.3.0.53\lib\net46\Syncfusion.SfGridConverter.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfInput.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfInput.WPF.18.3.0.53\lib\net46\Syncfusion.SfInput.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfShared.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfShared.WPF.18.3.0.53\lib\net46\Syncfusion.SfShared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.18.3.0.53\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Tools.WPF, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Tools.WPF.18.3.0.53\lib\net46\Syncfusion.Tools.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=18.3460.0.53, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.Wpf.18.3.0.53\lib\net46\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helpers\Authorisation\AnonymousIdentity.cs" />
+    <Compile Include="Helpers\Authorisation\AuthenticationService.cs" />
+    <Compile Include="Helpers\Authorisation\CustomIdentity.cs" />
+    <Compile Include="Helpers\Authorisation\CustomPrincipal.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Model\Customer_Details.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer_Details_Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Customer_Details_Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer_Details_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer_Details_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Customer_Details_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer_Ticket_Details.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer_Transaction.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Employee_Details.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Event_Details.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Guest_Ticket_Details.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Guest_Transaction.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ticket_Details.cs">
+      <DependentUpon>Customer_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\Base view models\AppViewModel.cs" />
+    <Compile Include="ViewModel\Base view models\DefaultViewModel.cs" />
+    <Compile Include="ViewModel\Base view models\SearchEventViewModel.cs" />
+    <Compile Include="ViewModel\Buying tickets\CustomerPurchaseTicketViewModel.cs" />
+    <Compile Include="ViewModel\Buying tickets\PurchaseTicketsViewModel.cs" />
+    <Compile Include="ViewModel\Buying tickets\SuccessfulCustomerTicketPurchaseViewModel.cs" />
+    <Compile Include="ViewModel\Buying tickets\SuccessfulPurchaseViewModel.cs" />
+    <Compile Include="ViewModel\Buying tickets\ViewEventsViewModel.cs" />
+    <Compile Include="ViewModel\Dashboard\ChangeMyDetailsViewModel.cs" />
+    <Compile Include="ViewModel\Dashboard\HomePageSignedInViewModel.cs" />
+    <Compile Include="ViewModel\Dashboard\MyAccountViewModel.cs" />
+    <Compile Include="ViewModel\Dashboard\ViewPastTicketsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Customer\AddCustomerDetailsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Customer\ModifyGuestTicketsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Employee\AddEmployeeViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Event Management\AddEventsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Event Management\GenerateTicketsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Event Management\ModifyEventsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Event Management\SuccessfulTicketsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\zData about event\DataEventsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\EmployeeDashboardViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\EmployeeLoginViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Customer\ModifyCustomerDetailsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Customer\ModifyCustomerTicketDetailsViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\Employee\ModifyEmployeeDetailsViewModel.cs" />
+    <Compile Include="ViewModel\Register\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\Signing In\SignInViewModel.cs" />
+    <Compile Include="ViewModel\Register\SuccessfulRegisterViewModel.cs" />
+    <Compile Include="ViewModel\Signing In\SuccessfulSignInViewModel.cs" />
+    <Compile Include="ViewModel\zEmployees\zData about event\MoreDataViewModel.cs" />
+    <Compile Include="Views\Base View\DefaultView.xaml.cs">
+      <DependentUpon>DefaultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Base View\SearchEventView.xaml.cs">
+      <DependentUpon>SearchEventView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buying tickets\CustomerPurchaseTicketView.xaml.cs">
+      <DependentUpon>CustomerPurchaseTicketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buying tickets\PurchaseTicketsView.xaml.cs">
+      <DependentUpon>PurchaseTicketsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buying tickets\SuccessfulCustomerTicketPurchaseView.xaml.cs">
+      <DependentUpon>SuccessfulCustomerTicketPurchaseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buying tickets\SuccessfulPurchaseView.xaml.cs">
+      <DependentUpon>SuccessfulPurchaseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Buying tickets\ViewEventsView.xaml.cs">
+      <DependentUpon>ViewEventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard\ChangeMyDetailsView.xaml.cs">
+      <DependentUpon>ChangeMyDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard\HomePageSignedInView.xaml.cs">
+      <DependentUpon>HomePageSignedInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard\MyAccountView.xaml.cs">
+      <DependentUpon>MyAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard\ViewPastTicketsView.xaml.cs">
+      <DependentUpon>ViewPastTicketsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Customer\ModifyCustomerTicketDetailsView.xaml.cs">
+      <DependentUpon>ModifyCustomerTicketDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Customer\AddCustomerDetailsView.xaml.cs">
+      <DependentUpon>AddCustomerDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Customer\ModifyGuestTicketsView.xaml.cs">
+      <DependentUpon>ModifyGuestTicketsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\EmployeeDashboardView.xaml.cs">
+      <DependentUpon>EmployeeDashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\EmployeeLoginView.xaml.cs">
+      <DependentUpon>EmployeeLoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Customer\ModifyCustomerDetailsView.xaml.cs">
+      <DependentUpon>ModifyCustomerDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Employee\AddEmployeeView.xaml.cs">
+      <DependentUpon>AddEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Employee\ModifyEmployeeDetailsView.xaml.cs">
+      <DependentUpon>ModifyEmployeeDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Register\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Event Managment\AddEventsView.xaml.cs">
+      <DependentUpon>AddEventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Event Managment\GenerateTicketsView.xaml.cs">
+      <DependentUpon>GenerateTicketsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Event Managment\ModifyEventsView.xaml.cs">
+      <DependentUpon>ModifyEventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\Event Managment\SuccessfulTicketsView.xaml.cs">
+      <DependentUpon>SuccessfulTicketsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\zData about event\DataEventsView.xaml.cs">
+      <DependentUpon>DataEventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sign In\SignInView.xaml.cs">
+      <DependentUpon>SignInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Register\SuccessfulRegisterView.xaml.cs">
+      <DependentUpon>SuccessfulRegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sign In\SuccessfulSignInView.xaml.cs">
+      <DependentUpon>SuccessfulSignInView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\zEmployees\zData about event\MoreDataView.xaml.cs">
+      <DependentUpon>MoreDataView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\Base View\DefaultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Base View\SearchEventView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buying tickets\CustomerPurchaseTicketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buying tickets\PurchaseTicketsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buying tickets\SuccessfulCustomerTicketPurchaseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buying tickets\SuccessfulPurchaseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Buying tickets\ViewEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dashboard\ChangeMyDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dashboard\HomePageSignedInView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dashboard\MyAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dashboard\ViewPastTicketsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Customer\ModifyCustomerTicketDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Customer\AddCustomerDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Customer\ModifyGuestTicketsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\EmployeeDashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\EmployeeLoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Customer\ModifyCustomerDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Employee\AddEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Employee\ModifyEmployeeDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Register\RegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Event Managment\AddEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Event Managment\GenerateTicketsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Event Managment\ModifyEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\Event Managment\SuccessfulTicketsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\zData about event\DataEventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sign In\SignInView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Register\SuccessfulRegisterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sign In\SuccessfulSignInView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\zEmployees\zData about event\MoreDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\Customer_Details_Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Customer_Details_Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Customer_Details_Model.edmx.diagram">
+      <DependentUpon>Customer_Details_Model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\Customer_Details_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Customer_Details_Model.Context.cs</LastGenOutput>
+      <DependentUpon>Customer_Details_Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\Customer_Details_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Customer_Details_Model.edmx</DependentUpon>
+      <LastGenOutput>Customer_Details_Model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="Ssample.Views.HomePageSignedInView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Ssample.Views"
+             xmlns:properties="clr-namespace:Ssample.Properties" 
+             xmlns:viewModel="clr-namespace:Ssample.ViewModel"
+             xmlns:dashboard="clr-namespace:Ssample.ViewModel.Dashboard"
+             xmlns:baseViewModels="clr-namespace:Ssample.ViewModel.Base_view_models"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:buyingTickets="clr-namespace:Ssample.ViewModel.Buying_tickets"
+             mc:Ignorable="d"
+             d:DesignHeight="800"
+             d:DesignWidth="1200">
+    <Grid Background="Green">
+
+        <!--#region Column/row definitions-->
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--#endregion-->
+
+        <!--Label for page-->
+        <Label Grid.Column="0"
+               Grid.Row="0"
+               Content="TixGurus"
+               FontSize="24"
+               Margin="10 10 10 10" />
+
+        <!--Button which changes to show personal details-->
+        <Button Grid.Column="4"
+                Grid.Row="0"
+                Content="My account"
+                Margin="10 10 10 10"
+                Command="{Binding NavCommand}">
+            <Button.CommandParameter>
+                <dashboard:MyAccountViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+        <!--Textblock which shows which account is logged in-->
+        <TextBlock Grid.Column="5"
+                   Grid.Row="0"
+                   TextWrapping="Wrap"
+                   FontSize="14">
+            <Run Text="Successfully signed in as" />
+            <Run Text="{Binding Source={x:Static properties:Settings.Default},Path=Email}" />
+        </TextBlock>
+
+        <Button Grid.Column="5"
+                Grid.Row="6"
+                Content="Logout"
+                Margin="10 10 10 10"
+                Command="{Binding NavLogoutCommand}">
+            <Button.CommandParameter>
+                <baseViewModels:DefaultViewModel/>
+            </Button.CommandParameter>
+        </Button>
+
+
+        <!--#region Tile view-->
+        <syncfusion:TileViewControl Grid.Column="0"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="6"
+                                    Grid.RowSpan="5"
+                                    ItemsSource="{Binding Events}"
+                                    IsSynchronizedWithCurrentItem="True"
+                                    SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <syncfusion:TileViewControl.ItemTemplate>
+                <DataTemplate>
+                    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Event Name:" />
+                                <TextBlock Text="{Binding eventTitle }"
+                                           Margin="5,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Event Genre:" />
+                                <TextBlock Text="{Binding eventGenre }"
+                                           Margin="5,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Event Genre:" />
+                                <TextBlock Text="{Binding eventDescription }"
+                                           Margin="5,0,0,0" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <ListBoxItem.DataContext>
+                                <baseViewModels:DefaultViewModel />
+                            </ListBoxItem.DataContext>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Go to page:" />
+                                <Button Command="{Binding NavigateTicketDetailsCommand}"
+                                        Content="Go to book">
+                                    <Button.CommandParameter>
+                                        <buyingTickets:ViewEventsViewModel />
+                                    </Button.CommandParameter>
+                                </Button>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </DataTemplate>
+
+            </syncfusion:TileViewControl.ItemTemplate>
+
+            <syncfusion:TileViewControl.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding eventTitle}" />
+                </DataTemplate>
+            </syncfusion:TileViewControl.HeaderTemplate>
+        </syncfusion:TileViewControl>
+
+        <!--#endregion-->
+
+    </Grid>
+</UserControl>
