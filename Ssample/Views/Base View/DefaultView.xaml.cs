@@ -13,7 +13,5 @@ namespace Ssample.Views.Base_View
             InitializeComponent();
             DataContext = new DefaultViewModel();
         }
-
-
     }
 }

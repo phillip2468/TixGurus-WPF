@@ -8,10 +8,17 @@ using Ssample.Properties;
 
 namespace Ssample.ViewModel.Base_view_models
 {
+    /// <summary>
+    /// A view model responsible for showing all events
+    /// in the TixGurus.
+    /// </summary>
     public class SearchEventViewModel : NavigationViewModelBase
     {
+        #region Commands
         public ICommand NavigateTicketDetailsCommand { get; set; }
         public ICommand NavCommand { get; set; }
+        #endregion
+
         public SearchEventViewModel()
         {
             NavCommand = new RelayCommand<NavigationViewModelBase>(Nav);

@@ -66,7 +66,7 @@ namespace Ssample.ViewModel.Base_view_models
         #region Constructor
         /// <summary>
         /// Constructor for the class containing initialization, declaration
-        /// and commands for the class
+        /// and commands for the class.
         /// </summary>
         public DefaultViewModel()
         {
@@ -91,9 +91,9 @@ namespace Ssample.ViewModel.Base_view_models
 
             #region Commands arguments
 
-            NavCommand = new RelayCommand<NavigationViewModelBase>(Nav);
-            NavigateSearchCommand = new RelayCommand<NavigationViewModelBase>(Nav2);
-            NavigateTicketDetailsCommand = new RelayCommand<NavigationViewModelBase>(Nav3);
+            NavCommand = new RelayCommand<NavigationViewModelBase>(RegisterNav);
+            NavigateSearchCommand = new RelayCommand<NavigationViewModelBase>(SearchModelNav);
+            NavigateTicketDetailsCommand = new RelayCommand<NavigationViewModelBase>(TicketDetailsNav);
 
             #endregion
 
@@ -103,19 +103,21 @@ namespace Ssample.ViewModel.Base_view_models
 
         #region Helper Functions
 
-        public List<Event_Details> Events { get; set; }
-
-        //Navigates to the register view
-        private void Nav(NavigationViewModelBase viewModel)
+        /// <summary>
+        /// Navigates to the register view
+        /// </summary>
+        /// <param name="viewModel">The register viewmodel.</param>
+        private void RegisterNav(NavigationViewModelBase viewModel)
         {
             Navigate(viewModel);
         }
+        
         /// <summary>
         /// Helper function for navigating
         /// to the search events page
         /// </summary>
-        /// <param name="viewModel"></param>
-        private void Nav2(NavigationViewModelBase viewModel)
+        /// <param name="viewModel">The search viewmodel.</param>
+        private void SearchModelNav(NavigationViewModelBase viewModel)
         {
 
             Properties.Settings.Default.SearchText = SearchText;
@@ -130,7 +132,11 @@ namespace Ssample.ViewModel.Base_view_models
             }
         }
 
-        private void Nav3(NavigationViewModelBase viewModel)
+        /// <summary>
+        /// Helper function for navigating to the ticket details view.
+        /// </summary>
+        /// <param name="viewModel">The ticket details view.</param>
+        private void TicketDetailsNav(NavigationViewModelBase viewModel)
         {
             Navigate(viewModel);
         }
@@ -143,9 +149,12 @@ namespace Ssample.ViewModel.Base_view_models
         private string _searchText;
 
         /// <summary>
-        /// Property for getting the
-        /// search text from the
-        /// text box
+        /// Creates a list of all the relevant event details.
+        /// </summary>
+        public List<Event_Details> Events { get; set; }
+
+        /// <summary>
+        /// Property to get text from the search box.
         /// </summary>
         public string SearchText
         {
@@ -159,7 +168,7 @@ namespace Ssample.ViewModel.Base_view_models
 
         private Event_Details _selectedItem;
         /// <summary>
-        /// Property for getting the selected item
+        /// Uses the event title to identify all details of an event.
         /// </summary>
         public Event_Details SelectedItem
         {
